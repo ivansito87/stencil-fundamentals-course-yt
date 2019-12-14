@@ -1,0 +1,8 @@
+@mixin alert-colors($bg-color, $txt-color, $border-color) {
+  background-color: $bg-color;
+  line-height: 1.5;
+  padding: 8px 15px;
+  border: 1px solid $border-color;
+  font-family: "Menlo";
+  color: $txt-color;
+}

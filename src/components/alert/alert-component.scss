@@ -1,0 +1,29 @@
+@import "./functions.scss";
+
+.info {
+  @include alert-colors(#e6f7ff, #052031, #91d5ff);
+
+  &.acknowledged {
+    display: none;
+  }
+}
+.success {
+  @include alert-colors(#f6ffed, #052031, #b7eb8f);
+  &.acknowledged {
+    display: none;
+  }
+}
+.error {
+  @include alert-colors(#fff1f0, #052031, #ffa39e);
+  &.acknowledged {
+    display: none;
+  }
+}
+.mega {
+  @include alert-colors(#fff0fc, #052031, #f79eff);
+  padding: 14px 30px;
+  font-weight: bolder;
+  &.acknowledged {
+    display: none;
+  }
+}
