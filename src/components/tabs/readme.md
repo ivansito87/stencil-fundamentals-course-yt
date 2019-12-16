@@ -15,9 +15,9 @@
 
 ## Events
 
-| Event              | Description | Type                            |
-| ------------------ | ----------- | ------------------------------- |
-| `acknowledgeEvent` |             | `CustomEvent<AwAlertInterface>` |
+| Event              | Description | Type               |
+| ------------------ | ----------- | ------------------ |
+| `acknowledgeEvent` |             | `CustomEvent<any>` |
 
 
 ----------------------------------------------

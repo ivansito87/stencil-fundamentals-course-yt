@@ -27,3 +27,17 @@
     display: none;
   }
 }
+
+p {
+    justify-content: center;
+}
+
+button.acknowledged-button {
+  border: 0;
+  background-color: #dbd7dbb7;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: "Roboto";
+  opacity: 0.5;
+  color: black;
+}

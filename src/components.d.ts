@@ -7,31 +7,35 @@
 
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
-
+import {
+  AwAlertInterface,
+} from './components/alert/alert-component.interface';
+import {
+  AwTabsInterface,
+} from './components/tabs/tabs-component.interface';
 
 export namespace Components {
+  interface ActiveTabsComponent {
+    'element': HTMLElement;
+  }
   interface AlertComponent {
     'message': string;
     'type': 'mega' | 'info' | 'error' | 'success';
   }
-  interface MyComponent {
-    /**
-    * The first name
-    */
-    'first': string;
-    /**
-    * The last name
-    */
-    'last': string;
-    /**
-    * The middle name
-    */
-    'middle': string;
+  interface TabsComponent {
+    'active': boolean;
+    'name': string;
   }
 }
 
 declare global {
 
+
+  interface HTMLActiveTabsComponentElement extends Components.ActiveTabsComponent, HTMLStencilElement {}
+  var HTMLActiveTabsComponentElement: {
+    prototype: HTMLActiveTabsComponentElement;
+    new (): HTMLActiveTabsComponentElement;
+  };
 
   interface HTMLAlertComponentElement extends Components.AlertComponent, HTMLStencilElement {}
   var HTMLAlertComponentElement: {
@@ -39,40 +43,37 @@ declare global {
     new (): HTMLAlertComponentElement;
   };
 
-  interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
+  interface HTMLTabsComponentElement extends Components.TabsComponent, HTMLStencilElement {}
+  var HTMLTabsComponentElement: {
+    prototype: HTMLTabsComponentElement;
+    new (): HTMLTabsComponentElement;
   };
   interface HTMLElementTagNameMap {
+    'active-tabs-component': HTMLActiveTabsComponentElement;
     'alert-component': HTMLAlertComponentElement;
-    'my-component': HTMLMyComponentElement;
+    'tabs-component': HTMLTabsComponentElement;
   }
 }
 
 declare namespace LocalJSX {
+  interface ActiveTabsComponent {
+    'element'?: HTMLElement;
+  }
   interface AlertComponent {
     'message'?: string;
+    'onAcknowledgeEvent'?: (event: CustomEvent<AwAlertInterface>) => void;
     'type'?: 'mega' | 'info' | 'error' | 'success';
   }
-  interface MyComponent {
-    /**
-    * The first name
-    */
-    'first'?: string;
-    /**
-    * The last name
-    */
-    'last'?: string;
-    /**
-    * The middle name
-    */
-    'middle'?: string;
+  interface TabsComponent {
+    'active'?: boolean;
+    'name'?: string;
+    'onTabActivate'?: (event: CustomEvent<AwTabsInterface>) => void;
   }
 
   interface IntrinsicElements {
+    'active-tabs-component': ActiveTabsComponent;
     'alert-component': AlertComponent;
-    'my-component': MyComponent;
+    'tabs-component': TabsComponent;
   }
 }
 
@@ -82,8 +83,9 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
+      'active-tabs-component': LocalJSX.ActiveTabsComponent & JSXBase.HTMLAttributes<HTMLActiveTabsComponentElement>;
       'alert-component': LocalJSX.AlertComponent & JSXBase.HTMLAttributes<HTMLAlertComponentElement>;
-      'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+      'tabs-component': LocalJSX.TabsComponent & JSXBase.HTMLAttributes<HTMLTabsComponentElement>;
     }
   }
 }

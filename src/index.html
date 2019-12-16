@@ -13,14 +13,29 @@
 
 <body>
 
-  <!-- <my-component message="Hello World"></my-component> -->
-  <alert-component type="info" message="this is an important alert"></alert-component>
-  <alert-component type="success" message="this is an important alert"></alert-component>
-  <alert-component type="error" message="this is an important alert"></alert-component>
-  <alert-component type="mega" message="this is an important alert"></alert-component>
 
-  <button>Cick me!</button>
-  <p>Another text</p>
+  <active-tabs-component active-tab="Tab-2">
+    <tabs-component name="tab1">
+      Tab One
+    </tabs-component>
+    <tabs-component name="tab2">
+      Tab Two
+    </tabs-component>
+  </active-tabs-component>
+
+  <!-- <my-component message="Hello World"></my-component> -->
+  <!-- <div>
+    <alert-component type="info" message="this is an important alert"></alert-component>
+    <alert-component type="success" message="this is an important alert"></alert-component>
+    <alert-component type="error" message="this is an important alert"></alert-component>
+    <alert-component type="mega" message="this is an important alert"></alert-component>
+    <tabs-component type="mega" message="this is an important alert"></tabs-component>
+  </div> -->
+
+
+
+  <!-- <button>Cick me!</button>
+  <p>Another text</p> -->
 
 
 </body>
@@ -31,10 +46,34 @@
   document.querySelector('button').addEventListener('click', function () {
     const alert = document.querySelector('alert-component');
     alert.message = 'This was an important alert';
-
-
   })
 
+  // this function is just created to handle the event that is raised from stencil 
+  // it renturns the event as result of calling it in addEventListener
+  function handleListenEvent(e) {
+    console.log(e.detail.when);
+    // console.log(e.target.text);  // <-- To get the text from the event emitter
+    // console.log(e);
+  }
+
+  // Adding an event listener takes a function as second parameter
+  // in this function we have access to the event that comes from stencil
+  document.addEventListener('acknowledgeEvent', handleListenEvent);
+
+  // Tabs ----------------------===------------------------------------------------------===--------------------------------
+  // this function is just created to handle the event that is raised from stencil 
+  // it renturns the event as result of calling it in addEventListener
+  function handletabActivateEvent(e) {
+    console.log(e.detail.name);
+    // console.log(e.target.text);  // <-- To get the text from the event emitter
+    // console.log(e);
+  }
+
+  // Adding an event listener takes a function as second parameter
+  // in this function we have access to the event that comes from stencil
+  document.addEventListener('tabActivate', handletabActivateEvent);
+
+// Tabs ----------------------===------------------------------------------------------===--------------------------------    
 </script>
 
 </html>
